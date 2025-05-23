@@ -1,0 +1,346 @@
+/* Algemene styling: Reset en Basis */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Moderner lettertype */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* Zeer lichtgrijs */
+    color: #333;
+    scroll-behavior: smooth; /* Vloeiend scrollen naar ankers */
+}
+
+.container {
+    width: 90%; /* Bredere content */
+    max-width: 1200px; /* Maximale breedte */
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px; /* Wat padding aan de zijkanten */
+}
+
+/* Header en Navigatie */
+header {
+    background: #ffffff; /* Wit */
+    color: #333;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee; /* Subtiele scheidingslijn */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Lichte schaduw voor diepte */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex; /* Flexbox voor uitlijning */
+    justify-content: space-between; /* Links en rechts uitlijnen */
+    align-items: center; /* Verticaal centreren */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #2c3e50; /* Donkerder, professioneler blauwgrijs */
+    font-weight: 600; /* Iets dikker lettertype */
+}
+
+header nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline-block; /* Gebruik inline-block voor meer controle */
+    margin-left: 30px; /* Meer ruimte tussen items */
+}
+
+header nav ul li:first-child {
+    margin-left: 0; /* Geen marge voor de eerste */
+}
+
+header a {
+    color: #555; /* Zachte grijze tekst */
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500; /* Medium dikte */
+    padding: 5px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease; /* Vloeiende overgang */
+}
+
+header a:hover {
+    color: #007bff; /* Een helder blauw bij hover */
+    border-bottom: 2px solid #007bff; /* Onderstreping bij hover */
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* Blauw verloop */
+    color: #fff;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero h2 {
+    font-size: 3.5em; /* Grotere titel */
+    margin-bottom: 20px;
+    font-weight: 700; /* Extra dik */
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+    opacity: 0.9; /* Iets transparanter */
+}
+
+.button {
+    display: inline-block;
+    color: #fff;
+    background: #28a745; /* Groene knop voor actie */
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 50px; /* Volledig afgeronde knoppen */
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease; /* Vloeiende overgang */
+    border: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #218838; /* Iets donkerder groen bij hover */
+    transform: translateY(-2px); /* Lichte lift animatie */
+}
+
+/* Info Secties */
+.info-section {
+    padding: 60px 20px; /* Meer verticale ruimte */
+    margin: 30px auto;
+    max-width: 900px;
+    background: #fff;
+    border-radius: 10px; /* Subtiel afgeronde hoeken */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* Meer prominente schaduw */
+}
+
+.info-section h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    font-weight: 600;
+    position: relative; /* Voor de onderstreping */
+    padding-bottom: 15px;
+}
+
+.info-section h2::after { /* Decoratieve lijn onder de titel */
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #007bff;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.info-section h3 {
+    color: #007bff; /* Blauw voor subkoppen */
+    margin-top: 35px;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    font-weight: 600;
+}
+
+.info-section p {
+    margin-bottom: 1em;
+    line-height: 1.8;
+}
+
+.info-section ul, .info-section ol {
+    list-style-position: inside; /* Lijstpunten binnen de tekst */
+    margin-left: 0;
+    padding-left: 20px; /* Inspringen voor betere leesbaarheid */
+}
+
+.info-section li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Quiz Sectie */
+.quiz-section {
+    padding: 60px 20px;
+    margin: 30px auto;
+    max-width: 800px; /* Iets breder voor de quiz */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.quiz-section h2 {
+    color: #2c3e50;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.quiz-section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #007bff;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+#quiz-container {
+    margin-top: 30px;
+    text-align: left; /* Uitlijnen naar links binnen de container */
+}
+
+.quiz-question {
+    margin-bottom: 30px;
+    background: #fdfdfd; /* Zeer lichte achtergrond voor vraag */
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.quiz-question h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 500;
+}
+
+.quiz-options label {
+    display: block;
+    background: #f0f0f0; /* Lichtere optie achtergrond */
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 1.1em;
+    color: #444;
+    border: 1px solid #e0e0e0;
+}
+
+.quiz-options label:hover {
+    background: #e5e5e5; /* Subtiele hover */
+    transform: translateX(5px); /* Lichte verschuiving */
+}
+
+.quiz-options input[type="radio"] {
+    margin-right: 12px;
+    transform: scale(1.2); /* Iets grotere radio buttons */
+}
+
+.quiz-question button {
+    margin-top: 25px;
+    background: #007bff; /* Blauwe knop voor quiznavigatie */
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px; /* Afgeronde knop */
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.quiz-question button:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+#quiz-results {
+    margin-top: 30px;
+    padding: 30px;
+    background: #e9f7ef; /* Zachte groene achtergrond voor resultaten */
+    border-radius: 10px;
+    border: 1px solid #d4edda;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: none; /* Standaard verborgen */
+}
+
+#quiz-results h3 {
+    color: #28a745; /* Groen voor de score */
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+#quiz-results p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+#restart-quiz-button {
+    background: #6c757d; /* Grijs voor herstarten */
+    font-size: 1em;
+    padding: 10px 20px;
+}
+
+#restart-quiz-button:hover {
+    background: #5a6268;
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #2c3e50; /* Donkerdere, professionele footer */
+    color: #f8f8f8;
+    margin-top: 50px;
+    font-size: 0.9em;
+}
+
+/* Responsiviteit */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column; /* Stapel items onder elkaar */
+        text-align: center;
+    }
+    header nav ul {
+        margin-top: 15px;
+    }
+    header nav ul li {
+        margin: 0 10px; /* Minder marge op mobiel */
+    }
+    .hero h2 {
+        font-size: 2.5em;
+    }
+    .hero p {
+        font-size: 1.1em;
+    }
+    .info-section, .quiz-section {
+        margin: 15px;
+        padding: 30px 15px;
+    }
+    .info-section h2, .quiz-section h2 {
+        font-size: 2em;
+    }
+    .info-section h3 {
+        font-size: 1.4em;
+    }
+    .quiz-question h3 {
+        font-size: 1.3em;
+    }
+    .quiz-options label {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+}
