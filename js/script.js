@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Element Selecties - Controleer of deze ID's overeenkomen met je HTML
     const quizContainer = document.getElementById('quiz-container');
     const startQuizButton = document.getElementById('start-quiz-button');
     const quizResults = document.getElementById('quiz-results');
@@ -7,9 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultMessage = document.getElementById('result-message');
     const restartQuizButton = document.getElementById('restart-quiz-button');
 
+    // 2. Quiz Status Variabelen
     let currentQuestionIndex = 0;
     let score = 0;
 
+    // 3. Quiz Vragen Data
     const quizQuestions = [
         {
             question: "Je ontvangt een e-mail van je bank waarin staat dat je direct je account moet verifiëren via een link. Wat doe je?",
@@ -19,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Antwoord op de e-mail en vraag om meer informatie.",
                 "Negeer de e-mail en hoop dat het vanzelf overgaat."
             ],
-            answer: 1 // Index van het correcte antwoord
+            answer: 1 // Index van het correcte antwoord (0-gebaseerd)
         },
         {
             question: "Je bent op een openbaar Wi-Fi netwerk in een café. Wat is de veiligste actie als je online bankzaken wilt regelen?",
@@ -63,8 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    // Zorg ervoor dat dit altijd wordt ingesteld bij initialisatie, ongeacht of de quiz gestart is.
     totalQuestionsSpan.textContent = quizQuestions.length;
 
+    // Functie om de volgende vraag te laden of de resultaten te tonen
     function loadQuestion() {
         if (currentQuestionIndex < quizQuestions.length) {
             const questionData = quizQuestions[currentQuestionIndex];
@@ -79,15 +84,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             </label>
                         `).join('')}
                     </div>
-                    <button id="submit-answer-button">Volgende vraag</button>
+                    <button id="submit-answer-button" class="button">Volgende vraag</button>
                 </div>
             `;
+            // Belangrijk: Event listener moet opnieuw worden toegevoegd aan de NIEUWE knop
             document.getElementById('submit-answer-button').addEventListener('click', checkAnswer);
         } else {
-            showResults();
+            showResults(); // Alle vragen beantwoord, toon resultaten
         }
     }
 
+    // Functie om het antwoord te controleren
     function checkAnswer() {
         const selectedOption = document.querySelector(`input[name="question${currentQuestionIndex}"]:checked`);
         if (selectedOption) {
@@ -95,18 +102,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (userAnswer === quizQuestions[currentQuestionIndex].answer) {
                 score++;
             }
-            currentQuestionIndex++;
-            loadQuestion();
+            currentQuestionIndex++; // Ga naar de volgende vraag
+            loadQuestion(); // Laad de volgende vraag of resultaten
         } else {
             alert("Maak alsjeblieft een keuze voordat je verder gaat.");
         }
     }
 
+    // Functie om de quizresultaten te tonen
     function showResults() {
-        quizContainer.style.display = 'none';
-        startQuizButton.style.display = 'none'; // Verberg de startknop
-        quizResults.style.display = 'block';
-        scoreSpan.textContent = score;
+        quizContainer.style.display = 'none'; // Verberg de vragen container
+        // startQuizButton.style.display = 'none'; // Deze kan verwijderd worden, want hij is al verborgen.
+        quizResults.style.display = 'block'; // Toon de resultaten container
+        scoreSpan.textContent = score; // Update de score
 
         let message = "";
         if (score === quizQuestions.length) {
@@ -119,22 +127,33 @@ document.addEventListener('DOMContentLoaded', () => {
         resultMessage.textContent = message;
     }
 
+    // Functie om de quiz te resetten naar de beginstand
     function resetQuiz() {
-        currentQuestionIndex = 0;
-        score = 0;
-        quizContainer.style.display = 'block';
-        startQuizButton.style.display = 'inline-block'; // Toon de startknop weer
-        quizResults.style.display = 'none';
-        quizContainer.innerHTML = ''; // Leeg de quiz container voor de startknop
+        currentQuestionIndex = 0; // Reset vraagindex
+        score = 0; // Reset score
+        quizContainer.innerHTML = ''; // Leeg de quiz container van eventuele oude vragen
+        
+        // Zorg ervoor dat de startknop zichtbaar is en de quiz resultaten verborgen
+        quizContainer.style.display = 'block'; // Zorgt dat de container met de startknop zichtbaar is
+        startQuizButton.style.display = 'inline-block'; // Toon de startknop
+        quizResults.style.display = 'none'; // Verberg de resultaten
+
+        // Voeg de startknop weer toe aan de quizContainer als die eerder leeg was gehaald
+        // Dit is alleen nodig als je de HTML van de startknop dynamisch verwijdert uit de quizContainer.
+        // In jouw HTML staat de startknop al direct in quiz-container, dus dit is niet nodig:
+        // quizContainer.appendChild(startQuizButton); // NIET NODIG ALS STARTKNOP AL IN HTML STAAT
+
     }
 
+    // Event listeners voor knoppen
     startQuizButton.addEventListener('click', () => {
-        startQuizButton.style.display = 'none';
-        loadQuestion();
+        // startQuizButton.style.display = 'none'; // Deze verbergt de knop, wat prima is
+        loadQuestion(); // Start de quiz door de eerste vraag te laden
     });
 
-    restartQuizButton.addEventListener('click', resetQuiz);
+    restartQuizButton.addEventListener('click', resetQuiz); // Reset quiz bij klik op herstartknop
 
-    // Initial state
-    resetQuiz(); // Zorgt ervoor dat de quiz start met alleen de startknop
+    // Initialisatie: zorg ervoor dat de quiz start met alleen de startknop zichtbaar
+    // Dit zorgt ervoor dat de quiz de juiste initiële staat heeft.
+    resetQuiz();
 });
